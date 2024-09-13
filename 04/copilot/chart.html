@@ -2,23 +2,29 @@
 <html>
 <head>
   <style>
-    .error {
-        color: red;
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
     }
   </style>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@4.17.0"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@6"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5.20.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 </head>
 <body>
   <div id="vis"></div>
   <script>
     (function(vegaEmbed) {
-      var spec = {"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "vconcat": [{"data": {"name": "data-67d840b7e3a4dd0bc375c8894b404f2f"}, "mark": "line", "encoding": {"x": {"field": "X", "type": "quantitative"}, "y": {"field": "Y", "type": "quantitative"}}}, {"data": {"name": "data-b8ac5300db740eac84f79d3bf630f056"}, "mark": "bar", "encoding": {"color": {"condition": {"value": "red", "test": "(datum.country === 'IT')"}, "value": "green"}, "tooltip": [{"field": "category", "type": "nominal"}, {"field": "value", "type": "quantitative"}, {"field": "country", "type": "nominal"}], "x": {"field": "category", "type": "nominal"}, "y": {"field": "value", "type": "quantitative"}}, "selection": {"selector001": {"type": "interval", "bind": "scales", "encodings": ["x", "y"]}}}], "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-67d840b7e3a4dd0bc375c8894b404f2f": [{"X": 1, "Y": 56}, {"X": 2, "Y": 78}, {"X": 3, "Y": 56}, {"X": 4, "Y": 45}, {"X": 5, "Y": 67}], "data-b8ac5300db740eac84f79d3bf630f056": [{"category": "A", "value": 28, "country": "IT"}, {"category": "B", "value": 55, "country": "FR"}, {"category": "C", "value": 44, "country": "FR"}, {"category": "D", "value": 54, "country": "IT"}, {"category": "E", "value": 67, "country": "FR"}]}};
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "vconcat": [{"data": {"name": "data-10f803cfc0b45d9e7a8b50c021fd3521"}, "mark": {"type": "line"}, "encoding": {"x": {"field": "X", "type": "quantitative"}, "y": {"field": "Y", "type": "quantitative"}}}, {"data": {"name": "data-da5923fc271f34b8b44e138f73237a5e"}, "mark": {"type": "bar"}, "encoding": {"color": {"condition": {"test": "(datum.country === 'Italy')", "value": "red"}, "value": "green"}, "tooltip": [{"field": "category", "type": "nominal"}, {"field": "value", "type": "quantitative"}, {"field": "country", "type": "nominal"}], "x": {"field": "category", "type": "nominal"}, "y": {"field": "value", "type": "quantitative"}}, "name": "view_1"}], "params": [{"name": "param_1", "select": {"type": "interval", "encodings": ["x", "y"]}, "bind": "scales", "views": ["view_1"]}], "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json", "datasets": {"data-10f803cfc0b45d9e7a8b50c021fd3521": [{"X": 1, "Y": 2}, {"X": 2, "Y": 4}, {"X": 3, "Y": 6}, {"X": 4, "Y": 8}, {"X": 5, "Y": 10}, {"X": 6, "Y": 12}, {"X": 7, "Y": 14}, {"X": 8, "Y": 16}, {"X": 9, "Y": 18}, {"X": 10, "Y": 20}], "data-da5923fc271f34b8b44e138f73237a5e": [{"category": "A", "value": 25, "country": "USA"}, {"category": "B", "value": 42, "country": "Canada"}, {"category": "C", "value": 18, "country": "UK"}, {"category": "D", "value": 35, "country": "Germany"}, {"category": "E", "value": 50, "country": "France"}, {"category": "F", "value": 22, "country": "Japan"}, {"category": "G", "value": 30, "country": "Australia"}, {"category": "H", "value": 48, "country": "China"}, {"category": "I", "value": 15, "country": "Italy"}, {"category": "J", "value": 38, "country": "Spain"}]}};
       var embedOpt = {"mode": "vega-lite"};
 
       function showError(el, error){
-          el.innerHTML = ('<div class="error" style="color:red;">'
+          el.innerHTML = ('<div style="color:red;">'
                           + '<p>JavaScript Error: ' + error.message + '</p>'
                           + "<p>This usually means there's a typo in your chart specification. "
                           + "See the javascript console for the full traceback.</p>"
