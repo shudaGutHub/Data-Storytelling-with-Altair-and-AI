@@ -14,7 +14,13 @@ visits_query = "SELECT * FROM visits"
 visits_data = pd.read_sql_query(visits_query, conn)
 
 # Merge the patients and visits data based on the foreign key subject_elm_id
-merged_data = pd.merge(patients_data, visits_data, left_on='subject_elm_id', right_on='subject_elm_id', how='left')
+merged_data = pd.merge(
+    patients_data, 
+    visits_data, 
+    left_on='subject_elm_id', 
+    right_on='subject_elm_id', 
+    how='left'
+)
 
 # Create a dictionary where each patient is mapped to their visit dates
 patients_visits_dict = merged_data.groupby('subject_elm_id')['visit_date'].apply(list).to_dict()
@@ -23,4 +29,6 @@ patients_visits_dict = merged_data.groupby('subject_elm_id')['visit_date'].apply
 conn.close()
 
 # Display the dictionary to the user
-patients_visits_dict
+for patient in patients_visits_dict.keys():
+    print(patient)
+
